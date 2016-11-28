@@ -99,8 +99,7 @@ public void EliminarLibro (int id_libro
         _ILibroCAD.EliminarLibro (id_libro);
 }
 
-public LibroEN VerLibro (int id_libro
-                         )
+public LibroEN VerLibro (int id_libro)
 {
         LibroEN libroEN = null;
 

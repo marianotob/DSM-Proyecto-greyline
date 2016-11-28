@@ -28,10 +28,10 @@ public bool IniciarSesion (string p_oid, string pass)
         // ciframos la cadena que nos pasan como password y comprobamos que es la misma que la del usuario
         var passCifrado = Utils.Util.GetEncondeMD5 (pass);
 
-        UsuarioEN usuarioEN = null;
+        UsuarioEN usuarioEN = _IUsuarioCAD.ReadOIDDefault(p_oid);
         bool login = false;
 
-        if (p_oid != null && pass != null) {
+        if (pass != null && pass.Equals(usuarioEN.Contrasenya)) {
                 login = true;
         }
 

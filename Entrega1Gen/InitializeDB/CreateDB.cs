@@ -9,6 +9,9 @@ using Entrega1GenNHibernate.EN.GrayLine;
 using Entrega1GenNHibernate.CEN.GrayLine;
 using Entrega1GenNHibernate.CAD.GrayLine;
 
+// añado referencia a CP
+using Entrega1GenNHibernate.CP.GrayLine;
+
 /*PROTECTED REGION END*/
 namespace InitializeDB
 {
@@ -78,10 +81,6 @@ public static void InitializeData ()
         try
         {
                 // Insert the initilizations of entities using the CEN classes
-
-
-                // p.e. CustomerCEN customer = new CustomerCEN();
-                // customer.New_ (p_user:"user", p_password:"1234");
 
                 // creamos las entidades, las Cad y los CEN para realizar operaciones
                 IUsuarioCAD _IUsuarioCAD = new UsuarioCAD ();
@@ -162,55 +161,36 @@ public static void InitializeData ()
                 #endregion
 
                 #region Libro
-
+                // Libros
                 /* Creamos los libros y uno de ellos de pago */
-                LibroEN libro1EN = new LibroEN ();
-                LibroEN libro2EN = new LibroEN ();
-                LibroCEN libroCEN = new LibroCEN (_ILibroCAD);
+                LibroEN libro1EN = new LibroEN();
+                LibroEN libro2EN = new LibroEN();
+                PagoEN libro3EN = new PagoEN();
 
-                //Libro 1 ---------------> este libro esta publicado
-                libro1EN = new LibroEN ();
+                LibroCEN libroCEN = new LibroCEN(_ILibroCAD);
+
+                //Libro 1 ----PUBLICADO
+                libro1EN = new LibroEN();
                 libro1EN.Titulo = "El Quijote";
                 libro1EN.Portada = @"http://imagenesdeamorlindas.com/wp-content/uploads/2013/10/imagenes-lindas-de-amor.jpg";
                 libro1EN.Descripcion = "Novela de Cervantes";
                 libro1EN.Fecha = DateTime.Today;
                 libro1EN.Publicado = true;
-                libro1EN.Baneado = false;
+                libro1EN.Baneado = true;
                 libro1EN.Num_denuncias = 0;
 
-
-
-                //  libroCEN.CrearLibro (libro1EN.Titulo, libro1EN.Portada, libro1EN.Descripcion, libro1EN.Fecha, libro1EN.Publicado, usuario1EN, categoria_1EN, libro1EN.Baneado, libro1EN.Num_denuncias);
-
                 /*Libro 2*/
-                libro2EN = new LibroEN ();
+                libro2EN = new LibroEN();
                 libro2EN.Titulo = "El Castigo";
                 libro2EN.Portada = @"http://imagenesdeamorlindas.com/wp-content/uploads/2013/10/imagenes-lindas-de-amor.jpg";
                 libro2EN.Descripcion = "Novela de Pedrito";
                 libro2EN.Fecha = DateTime.Today;
-                libro2EN.Publicado = false;
+                libro2EN.Publicado = true;
                 libro2EN.Baneado = false;
                 libro2EN.Num_denuncias = 0;
 
-                // lista de usuarios
-                // creamos listas de usuarios y categorias para crear los libros
-                System.Collections.Generic.List<String> listaUsuarios = new List<string>();
-                System.Collections.Generic.List<int> listaCategorias = new List<int>();
-                listaUsuarios.Add (usuario1EN.Email);
-
-                libroCEN.CrearLibro (libro1EN.Titulo, libro1EN.Portada, libro1EN.Descripcion, libro1EN.Fecha, libro1EN.Publicado, listaUsuarios, listaCategorias, libro1EN.Baneado, libro1EN.Num_denuncias);
-                libroCEN.CrearLibro (libro2EN.Titulo, libro2EN.Portada, libro2EN.Descripcion, libro2EN.Fecha, libro2EN.Publicado, listaUsuarios, listaCategorias, libro2EN.Baneado, libro2EN.Num_denuncias);
-
-
-                #endregion
-
-                #region LibroPago
-
-                PagoEN libro3EN = new PagoEN ();
-                PagoCEN pagoCEN = new PagoCEN (_IPagoCAD);
-
                 //Libro 3 ---- De Pago
-                libro3EN = new PagoEN ();
+                libro3EN = new PagoEN();
                 libro3EN.Titulo = "Libro de Pago";
                 libro3EN.Portada = @"http://imagenesdeamorlindas.com/wp-content/uploads/2013/10/imagenes-lindas-de-amor.jpg";
                 libro3EN.Descripcion = "Novela de Cervantes de Pago";
@@ -221,45 +201,74 @@ public static void InitializeData ()
                 libro3EN.Precio = 12;
                 libro3EN.Pagado = false;
 
-                int oidLibroPago = pagoCEN.New_ (libro3EN.Titulo, libro3EN.Portada, libro3EN.Descripcion, libro3EN.Fecha, libro3EN.Publicado, listaUsuarios, listaCategorias, libro3EN.Baneado, libro3EN.Num_denuncias, libro3EN.Precio, libro3EN.Pagado);
 
-                // probamos leer el primer capitulo
+                // lista de usuarios
+                // creamos listas de usuarios y categorias para crear los libros
+                System.Collections.Generic.List<String> listaUsuarios = new List<string>();
+                System.Collections.Generic.List<int> listaCategorias = new List<int>();
+                listaUsuarios.Add(usuario1EN.Email);
+
+                int idLibro1 = libroCEN.CrearLibro(libro1EN.Titulo, libro1EN.Portada, libro1EN.Descripcion, libro1EN.Fecha, libro1EN.Publicado, listaUsuarios, listaCategorias, libro1EN.Baneado, libro1EN.Num_denuncias);
+                int idLibro2 = libroCEN.CrearLibro(libro2EN.Titulo, libro2EN.Portada, libro2EN.Descripcion, libro2EN.Fecha, libro2EN.Publicado, listaUsuarios, listaCategorias, libro2EN.Baneado, libro2EN.Num_denuncias);
+                int idLibro3 = libroCEN.CrearLibro(libro3EN.Titulo, libro3EN.Portada, libro3EN.Descripcion, libro3EN.Fecha, libro3EN.Publicado, listaUsuarios, listaCategorias, libro3EN.Baneado, libro3EN.Num_denuncias);
+                #endregion
+
+                #region LibroPago
+                //Nuevo libro de Pago
+                PagoCEN pagoCEN = new PagoCEN(_IPagoCAD);
+                int oidLibroPago = pagoCEN.New_(libro3EN.Titulo, libro3EN.Portada, libro3EN.Descripcion, libro3EN.Fecha, libro3EN.Publicado, listaUsuarios, listaCategorias, libro3EN.Baneado, libro3EN.Num_denuncias, libro3EN.Precio, libro3EN.Pagado);
+
 
                 #endregion
 
                 #region Capitulo
-
-                // agregacion
-                CapituloEN capituloEN = new CapituloEN ();
+                // Composicion
+                CapituloEN capituloEN = new CapituloEN();
+                CapituloCEN capituloCEN = new CapituloCEN();
                 /* Al ser una composicion junto con Libro, creamos una lista de capitulos para agregar al libro */
-                System.Collections.Generic.List<CapituloEN> capitulo1, capitulo2 = new List<CapituloEN>();
+                System.Collections.Generic.List<CapituloEN> capitulo1, capitulo2, capitulo3 = new List<CapituloEN>();
 
-                capitulo1 = new List<CapituloEN>();
+
                 //Capitulo  1
-                capituloEN = new CapituloEN ();
+                capitulo1 = new List<CapituloEN>();
+                capituloEN = new CapituloEN();
                 capituloEN.Id_capitulo = 1;
                 capituloEN.Nombre = "Capitulo 1 - La amenaza Fantasma";
                 capituloEN.Numero = 1;
                 capituloEN.Contenido = "Esto va de uno que va y viene";
-                capituloEN.Libro = libro1EN;
+                // capituloEN.Libro = libro1EN;
                 capituloEN.Usuario = usuario1EN;
                 capituloEN.Editando = false;
 
-                capitulo1.Add (capituloEN);
+                //capitulo1.Add(capituloEN);
+                capituloCEN.New_(capituloEN.Nombre, capituloEN.Numero, capituloEN.Contenido, idLibro1, true);
 
-                capitulo2 = new List<CapituloEN>();
+
                 //capitulo 2
-                capituloEN = new CapituloEN ();
+                capitulo2 = new List<CapituloEN>();
+                capituloEN = new CapituloEN();
                 capituloEN.Id_capitulo = 2;
                 capituloEN.Nombre = "Capitulo 2 - Ya vendr�n tiempos mejores";
                 capituloEN.Numero = 2;
                 capituloEN.Contenido = "Esto va de uno que va y viene";
-                capituloEN.Libro = libro1EN;
-                capituloEN.Usuario = usuario1EN;
+                //capituloEN.Libro = libro1EN;
+                //capituloEN.Usuario = usuario1EN;
                 capituloEN.Editando = false;
+                capituloCEN.New_(capituloEN.Nombre, capituloEN.Numero, capituloEN.Contenido, idLibro2, true);
+                //capitulo2.Add(capituloEN);
 
-                capitulo2.Add (capituloEN);
-
+                //capitulo 3
+                capitulo3 = new List<CapituloEN>();
+                capituloEN = new CapituloEN();
+                capituloEN.Id_capitulo = 2;
+                capituloEN.Nombre = "Capitulo3 - Puta Bida";
+                capituloEN.Numero = 3;
+                capituloEN.Contenido = "Esto va daaasdasdasdasdadasd va y viene";
+                //capituloEN.Libro = libro3EN;
+                //capituloEN.Usuario = usuario1EN;
+                capituloEN.Editando = true;
+                capituloCEN.New_(capituloEN.Nombre, capituloEN.Numero, capituloEN.Contenido, idLibro3, true);
+                // capitulo3.Add(capituloEN);
                 #endregion
 
                 #region Comentario
@@ -272,19 +281,36 @@ public static void InitializeData ()
                 var r = usuarioCEN.ReadAll (0, 10);
                 var l = libroCEN.ReadAll (0, 10);
                 var mostrarLibros = libroCEN.VerLibreria (0, 10);
-                System.Console.WriteLine (mostrarLibros);
+                var c = capituloCEN.ReadAll(0,10);
+                // System.Console.WriteLine (mostrarLibros);
                 // System.Console.WriteLine(usuario2adminEN.Contrasenya);
                 // System.Console.WriteLine (usuarioCEN.IniciarSesion (usuario2adminEN.Email, usuario2adminEN.Contrasenya));
                 var prueba_filtrolibro = libroCEN.BuscarLibro ("El Quijote");
+               
+            // comprobar capitulos de libro
+                CapituloCP capituloCP = new CapituloCP();
+                //capituloCP.LeerCapitulo(idLibro1);
+                //capituloCP.LeerCapitulo(idLibro2);
+                //capituloCP.LeerCapitulo(idLibro3);
 
 
-                /* Prueba seguridad */
+               /* if (idLibro1 > 0)
+                {
+                    IList<CapituloEN> listCapitulos = capituloCP.LeerCapitulo(idLibro1);
+                    System.Console.WriteLine(listCapitulos);
+
+                    foreach (CapituloEN capitulo in listCapitulos)
+                    {
+                        System.Console.WriteLine(capitulo.Contenido);
+                    }
+                }*/
 
                 #endregion
 
 
             /* Pruebas GIT */
             /* Pruebas vamos a trabajar en cps */
+            /* MARIANO ESTA ACTUALIZADO EL CREATE DB¿?¿?¿?*/
 
 
                 /*PROTECTED REGION END*/
