@@ -88,7 +88,6 @@ public static void InitializeData ()
                 ICategoriaCAD _ICategoriCAD = new CategoriaCAD ();
                 IPagoCAD _IPagoCAD = new PagoCAD ();
 
-
                 CategoriaEN categoriaEN = new CategoriaEN ();
                 CategoriaCEN categoriaCEN = new CategoriaCEN (_ICategoriCAD);
 
@@ -235,7 +234,7 @@ public static void InitializeData ()
                 capituloEN.Id_capitulo = 1;
                 capituloEN.Nombre = "Capitulo 1 - La amenaza Fantasma";
                 capituloEN.Numero = 1;
-                capituloEN.Contenido = "Esto va de uno que va y viene";
+                capituloEN.Contenido = "Este capitulo es el primero del libro 1";
                 // capituloEN.Libro = libro1EN;
                 capituloEN.Usuario = usuario1EN;
                 capituloEN.Editando = false;
@@ -250,7 +249,7 @@ public static void InitializeData ()
                 capituloEN.Id_capitulo = 2;
                 capituloEN.Nombre = "Capitulo 2 - Ya vendr�n tiempos mejores";
                 capituloEN.Numero = 2;
-                capituloEN.Contenido = "Esto va de uno que va y viene";
+                capituloEN.Contenido = "Este segundo capitulo es del libro 1";
                 //capituloEN.Libro = libro1EN;
                 //capituloEN.Usuario = usuario1EN;
                 capituloEN.Editando = false;
@@ -263,7 +262,7 @@ public static void InitializeData ()
                 capituloEN.Id_capitulo = 2;
                 capituloEN.Nombre = "Capitulo3 - Puta Bida";
                 capituloEN.Numero = 3;
-                capituloEN.Contenido = "Esto va daaasdasdasdasdadasd va y viene";
+                capituloEN.Contenido = "Este capitulo es del libro tercero";
                 //capituloEN.Libro = libro3EN;
                 //capituloEN.Usuario = usuario1EN;
                 capituloEN.Editando = true;
@@ -288,36 +287,36 @@ public static void InitializeData ()
                 var prueba_filtrolibro = libroCEN.BuscarLibro ("El Quijote");
                
             // comprobar capitulos de libro
-                CapituloCP capituloCP = new CapituloCP();
-                //capituloCP.LeerCapitulo(idLibro1);
-                //capituloCP.LeerCapitulo(idLibro2);
-                //capituloCP.LeerCapitulo(idLibro3);
+            CapituloCP capituloCP = new CapituloCP();
+            
+             if (idLibro1 > 0)
+             {
+                    
+                 IList<CapituloEN> listCapitulos = capituloCP.LeerCapitulo(idLibro1);
+                 System.Console.WriteLine(listCapitulos);
+                 if (listCapitulos != null)
+                 {
+                     System.Console.WriteLine(listCapitulos);
 
-
-               /* if (idLibro1 > 0)
-                {
-                    IList<CapituloEN> listCapitulos = capituloCP.LeerCapitulo(idLibro1);
-                    System.Console.WriteLine(listCapitulos);
-
-                    foreach (CapituloEN capitulo in listCapitulos)
-                    {
-                        System.Console.WriteLine(capitulo.Contenido);
-                    }
-                }*/
-
+                     foreach (CapituloEN capitulo in listCapitulos)
+                     {
+                         System.Console.WriteLine(capitulo.Contenido);
+                     }
+                 }
+                 }
+                   
+         
                 #endregion
 
 
-            /* Pruebas GIT */
-            /* Pruebas vamos a trabajar en cps */
-            /* MARIANO ESTA ACTUALIZADO EL CREATE DB¿?¿?¿?*/
+            /* Actualizado CapituloCP_LeerLibro --- falla condicion */
 
 
                 /*PROTECTED REGION END*/
         }
         catch (Exception ex)
         {
-                System.Console.WriteLine (ex.InnerException);
+                
                 throw ex;
         }
 }

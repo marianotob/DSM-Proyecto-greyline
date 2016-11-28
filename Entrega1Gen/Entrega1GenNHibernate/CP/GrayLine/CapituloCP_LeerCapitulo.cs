@@ -20,6 +20,8 @@ public partial class CapituloCP : BasicCP
 {
 public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.CapituloEN> LeerCapitulo (int ? id_libro)
 {
+
+    
         /*PROTECTED REGION ID(Entrega1GenNHibernate.CP.GrayLine_Capitulo_leerCapitulo) ENABLED START*/
 
     ICapituloCAD capituloCAD = null;
@@ -29,15 +31,21 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.Capitu
 
     try
     {
+        
         SessionInitializeTransaction();
         capituloCAD = new CapituloCAD(session);
         capituloCEN = new CapituloCEN(capituloCAD);
 
         LibroCAD libroCAD = new LibroCAD(session);
         LibroEN libroEN = libroCAD.ReadOIDDefault((int)id_libro);
+       
+        /*Estas condiciones no funcionan- Debemos buscar una solucion */
 
-        if (libroEN.GetType().Name.Equals("GratuitoEN"))
+        // libroEN.GetType().Name.Equals("GratuitoEN")
+        // libroEN.GetType()==typeof ("GratuitoEN")
+        if (1==1)
         {
+            
             // guardamos todos los capitulos
             result = capituloCAD.ReadAll(0, -1); // -1 para leerlos todos
         }
@@ -52,6 +60,7 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.Capitu
     catch (Exception ex)
     {
         SessionRollBack();
+        System.Console.WriteLine(ex.ToString());
         throw ex;
     }
     finally
