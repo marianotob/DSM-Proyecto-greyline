@@ -292,18 +292,19 @@ public static void InitializeData ()
              if (idLibro1 > 0)
              {
                     
-                 IList<CapituloEN> listCapitulos = capituloCP.LeerCapitulo(idLibro1);
-                 System.Console.WriteLine(listCapitulos);
+                 IList<CapituloEN> listCapitulos = capituloCP.LeerCapitulo(idLibro3);
+
+                 
                  if (listCapitulos != null)
                  {
-                     System.Console.WriteLine(listCapitulos);
+                     // System.Console.WriteLine(listCapitulos);
 
                      foreach (CapituloEN capitulo in listCapitulos)
                      {
-                         System.Console.WriteLine(capitulo.Contenido);
+                         System.Console.WriteLine(capitulo.Contenido.ToString());
                      }
                  }
-                 }
+            }
                    
          
                 #endregion

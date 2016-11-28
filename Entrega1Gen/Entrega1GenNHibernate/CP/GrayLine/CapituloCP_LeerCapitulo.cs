@@ -38,10 +38,12 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.Capitu
 
         LibroCAD libroCAD = new LibroCAD(session);
         LibroEN libroEN = libroCAD.ReadOIDDefault((int)id_libro);
+
+        System.Console.WriteLine("Capitulo: "+libroEN.Capitulo.ToString());
+        System.Console.WriteLine("Tipo de libro: " + libroEN.GetType().ToString());
        
         /*Estas condiciones no funcionan- Debemos buscar una solucion */
-
-        // libroEN.GetType().Name.Equals("GratuitoEN")
+                // libroEN.GetType().Name.Equals("GratuitoEN")
         // libroEN.GetType()==typeof ("GratuitoEN")
         if (1==1)
         {
@@ -60,7 +62,7 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.Capitu
     catch (Exception ex)
     {
         SessionRollBack();
-        System.Console.WriteLine(ex.ToString());
+        // System.Console.WriteLine(ex.ToString());
         throw ex;
     }
     finally
