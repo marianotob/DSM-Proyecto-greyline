@@ -23,10 +23,25 @@ public System.Collections.Generic.IList<LibroEN> VerLibreria (int first, int siz
 {
         /*PROTECTED REGION ID(Entrega1GenNHibernate.CEN.GrayLine_Libro_verLibreria_customized) START*/
 
-        System.Collections.Generic.IList<LibroEN> list = null;
+    // codigo generado de OOH4RIA
+       /* System.Collections.Generic.IList<LibroEN> list = null;
 
         list = _ILibroCAD.VerLibreria (first, size);
+       
+        return list;*/
+        System.Collections.Generic.IList<LibroEN> list = null;
+        list = _ILibroCAD.VerLibreria(first, size);
+
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (list[i].Publicado == false || list[i].Baneado == true)
+            {
+                list.RemoveAt(i);
+            }
+        }
         return list;
+
         /*PROTECTED REGION END*/
 }
 }

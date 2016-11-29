@@ -39,6 +39,7 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.Capitu
                 LibroCAD libroCAD = new LibroCAD (session);
                 LibroEN libroEN = libroCAD.ReadOIDDefault ((int)id_libro);
 
+
                 result = new List<CapituloEN>();
                 // System.Console.WriteLine("Capitulo: "+libroEN.Capitulo.ToString());
                 // System.Console.WriteLine("Tipo de libro: " + libroEN.GetType().ToString());
@@ -46,14 +47,15 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.Capitu
                 if (libroEN.GetType ().Name.Equals ("GratuitoEN")) {
                         // guardamos todos los capitulos
                         result = capituloCAD.ReadAll (0, -1); // -1 para leerlos todos
+                       
                 }
                 else{
                         // como es de pago solo devuelvo el primer capitulo
                         result.Add (capituloCAD.ReadAll (0, 1) [0]);
                         /*foreach (CapituloEN capitulo in result)
-                         * {
-                         *  System.Console.WriteLine("Contenido del capitulo: " + capitulo.Contenido.ToString());
-                         * }*/
+                         {
+                          System.Console.WriteLine("Contenido del capitulo: " + capitulo.Contenido.ToString());
+                         }*/
                 }
 
                 SessionCommit ();
