@@ -99,7 +99,8 @@ public void EliminarLibro (int id_libro
         _ILibroCAD.EliminarLibro (id_libro);
 }
 
-public LibroEN VerLibro (int id_libro)
+public LibroEN VerLibro (int id_libro
+                         )
 {
         LibroEN libroEN = null;
 
@@ -113,12 +114,6 @@ public System.Collections.Generic.IList<LibroEN> ReadAll (int first, int size)
 
         list = _ILibroCAD.ReadAll (first, size);
         return list;
-}
-public void AnyadirCapitulo (int p_Libro_OID, System.Collections.Generic.IList<int> p_capitulo_OIDs)
-{
-        //Call to LibroCAD
-
-        _ILibroCAD.AnyadirCapitulo (p_Libro_OID, p_capitulo_OIDs);
 }
 public void Valorar (int p_Libro_OID, System.Collections.Generic.IList<int> p_valoracion_OIDs)
 {
@@ -135,6 +130,10 @@ public void Comentar (int p_Libro_OID, System.Collections.Generic.IList<int> p_c
 public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> BuscarLibro (string nombre)
 {
         return _ILibroCAD.BuscarLibro (nombre);
+}
+public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> BuscarCapitulo ()
+{
+        return _ILibroCAD.BuscarCapitulo ();
 }
 }
 }
