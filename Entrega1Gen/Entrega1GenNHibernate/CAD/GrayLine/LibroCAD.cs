@@ -403,45 +403,6 @@ public void Denunciar (LibroEN libro)
                 SessionClose ();
         }
 }
-public void AnyadirCapitulo (int p_Libro_OID, System.Collections.Generic.IList<int> p_capitulo_OIDs)
-{
-        Entrega1GenNHibernate.EN.GrayLine.LibroEN libroEN = null;
-        try
-        {
-                SessionInitializeTransaction ();
-                libroEN = (LibroEN)session.Load (typeof(LibroEN), p_Libro_OID);
-                Entrega1GenNHibernate.EN.GrayLine.CapituloEN capituloENAux = null;
-                if (libroEN.Capitulo == null) {
-                        libroEN.Capitulo = new System.Collections.Generic.List<Entrega1GenNHibernate.EN.GrayLine.CapituloEN>();
-                }
-
-                foreach (int item in p_capitulo_OIDs) {
-                        capituloENAux = new Entrega1GenNHibernate.EN.GrayLine.CapituloEN ();
-                        capituloENAux = (Entrega1GenNHibernate.EN.GrayLine.CapituloEN)session.Load (typeof(Entrega1GenNHibernate.EN.GrayLine.CapituloEN), item);
-                        capituloENAux.Libro = libroEN;
-
-                        libroEN.Capitulo.Add (capituloENAux);
-                }
-
-
-                session.Update (libroEN);
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is Entrega1GenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new Entrega1GenNHibernate.Exceptions.DataLayerException ("Error in LibroCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-}
-
 public void Valorar (int p_Libro_OID, System.Collections.Generic.IList<int> p_valoracion_OIDs)
 {
         Entrega1GenNHibernate.EN.GrayLine.LibroEN libroEN = null;
@@ -530,6 +491,35 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroE
                 //IQuery query = session.CreateQuery(sql);
                 IQuery query = (IQuery)session.GetNamedQuery ("LibroENbuscarLibroHQL");
                 query.SetParameter ("nombre", nombre);
+
+                result = query.List<Entrega1GenNHibernate.EN.GrayLine.LibroEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is Entrega1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new Entrega1GenNHibernate.Exceptions.DataLayerException ("Error in LibroCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
+public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> BuscarCapitulo ()
+{
+        System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM LibroEN self where FROM LibroEN";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("LibroENbuscarCapituloHQL");
 
                 result = query.List<Entrega1GenNHibernate.EN.GrayLine.LibroEN>();
                 SessionCommit ();

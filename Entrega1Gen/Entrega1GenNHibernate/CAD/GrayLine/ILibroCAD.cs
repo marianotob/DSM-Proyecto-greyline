@@ -45,12 +45,13 @@ System.Collections.Generic.IList<LibroEN> ReadAll (int first, int size);
 void Denunciar (LibroEN libro);
 
 
-void AnyadirCapitulo (int p_Libro_OID, System.Collections.Generic.IList<int> p_capitulo_OIDs);
-
 void Valorar (int p_Libro_OID, System.Collections.Generic.IList<int> p_valoracion_OIDs);
 
 void Comentar (int p_Libro_OID, System.Collections.Generic.IList<int> p_comentario_OIDs);
 
 System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> BuscarLibro (string nombre);
+
+
+System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> BuscarCapitulo ();
 }
 }
