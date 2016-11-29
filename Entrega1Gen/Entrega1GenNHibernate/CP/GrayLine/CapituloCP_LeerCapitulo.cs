@@ -10,8 +10,10 @@ using Entrega1GenNHibernate.EN.GrayLine;
 using Entrega1GenNHibernate.CAD.GrayLine;
 using Entrega1GenNHibernate.CEN.GrayLine;
 
+
 /*PROTECTED REGION ID(usingEntrega1GenNHibernate.CP.GrayLine_Capitulo_leerCapitulo) ENABLED START*/
 //  references to other libraries
+using System.Collections.Generic;
 /*PROTECTED REGION END*/
 
 namespace Entrega1GenNHibernate.CP.GrayLine
@@ -39,22 +41,31 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.Capitu
         LibroCAD libroCAD = new LibroCAD(session);
         LibroEN libroEN = libroCAD.ReadOIDDefault((int)id_libro);
 
+        result = new List<CapituloEN>();
         System.Console.WriteLine("Capitulo: "+libroEN.Capitulo.ToString());
         System.Console.WriteLine("Tipo de libro: " + libroEN.GetType().ToString());
        
         /*Estas condiciones no funcionan- Debemos buscar una solucion */
                 // libroEN.GetType().Name.Equals("GratuitoEN")
         // libroEN.GetType()==typeof ("GratuitoEN")
-        if (1==1)
+        if (libroEN.GetType().Name.Equals("GratuitoEN"))
         {
             
             // guardamos todos los capitulos
             result = capituloCAD.ReadAll(0, -1); // -1 para leerlos todos
+
+            
+            
+
         }
         else
         {
             // como es de pago solo devuelvo el primer capitulo
             result.Add(capituloCAD.ReadAll(0, 1)[0]);
+            foreach (CapituloEN capitulo in result)
+            {
+                System.Console.WriteLine(" Contenido del capitulo: " + capitulo.Contenido.ToString());
+            }
         }
 
         SessionCommit();

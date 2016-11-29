@@ -162,14 +162,14 @@ public static void InitializeData ()
                 #region Libro
                 // Libros
                 /* Creamos los libros y uno de ellos de pago */
-                LibroEN libro1EN = new LibroEN();
-                LibroEN libro2EN = new LibroEN();
+                LibroEN libro1EN = new GratuitoEN();
+                LibroEN libro2EN = new GratuitoEN();
                 PagoEN libro3EN = new PagoEN();
 
                 LibroCEN libroCEN = new LibroCEN(_ILibroCAD);
 
                 //Libro 1 ----PUBLICADO
-                libro1EN = new LibroEN();
+                // libro1EN = new LibroEN();
                 libro1EN.Titulo = "El Quijote";
                 libro1EN.Portada = @"http://imagenesdeamorlindas.com/wp-content/uploads/2013/10/imagenes-lindas-de-amor.jpg";
                 libro1EN.Descripcion = "Novela de Cervantes";
@@ -179,7 +179,7 @@ public static void InitializeData ()
                 libro1EN.Num_denuncias = 0;
 
                 /*Libro 2*/
-                libro2EN = new LibroEN();
+               // libro2EN = new LibroEN();
                 libro2EN.Titulo = "El Castigo";
                 libro2EN.Portada = @"http://imagenesdeamorlindas.com/wp-content/uploads/2013/10/imagenes-lindas-de-amor.jpg";
                 libro2EN.Descripcion = "Novela de Pedrito";
@@ -189,7 +189,7 @@ public static void InitializeData ()
                 libro2EN.Num_denuncias = 0;
 
                 //Libro 3 ---- De Pago
-                libro3EN = new PagoEN();
+                // libro3EN = new PagoEN();
                 libro3EN.Titulo = "Libro de Pago";
                 libro3EN.Portada = @"http://imagenesdeamorlindas.com/wp-content/uploads/2013/10/imagenes-lindas-de-amor.jpg";
                 libro3EN.Descripcion = "Novela de Cervantes de Pago";
@@ -297,7 +297,6 @@ public static void InitializeData ()
                  
                  if (listCapitulos != null)
                  {
-                     // System.Console.WriteLine(listCapitulos);
 
                      foreach (CapituloEN capitulo in listCapitulos)
                      {
