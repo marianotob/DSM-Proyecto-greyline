@@ -47,17 +47,22 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.Capitu
 
                 if (libroEN.GetType ().Name.Equals ("GratuitoEN")) {
                         // guardamos todos los capitulos
-                        result = capituloCAD.ReadAll (0, -1); // -1 para leerlos todos
-                        var result2 = capitulo.BuscarCapitulo (1);
+                    result = capituloCAD.BuscarCapitulo(id_libro); // -1 para leerlos todos
+                    // pruebas
+                    /*foreach (CapituloEN capitulos in result)
+                    {
+                        System.Console.WriteLine("Contenido del capitulo: " + capitulos.Contenido.ToString());
+                    }*/
+                        
                 }
                 else{
                         // como es de pago solo devuelvo el primer capitulo
-                        result.Add (capituloCAD.ReadAll (0, 1) [0]);
-                        /*foreach (CapituloEN capitulo in result)
-                         * {
-                         * System.Console.WriteLine("Contenido del capitulo: " + capitulo.Contenido.ToString());
-                         * }*/
-                }
+                        result.Add (capituloCAD.BuscarCapitulo (id_libro) [0]);
+                        // pruebas
+                    /*foreach (CapituloEN capitulos in result)
+                    {
+                        System.Console.WriteLine("Contenido del capitulo: " + capitulos.Contenido.ToString());
+                    }*/
 
                 SessionCommit ();
         }
