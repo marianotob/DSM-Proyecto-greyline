@@ -150,6 +150,7 @@
 			
 			
 			
+			
 	<Compile Include="EN\GrayLine\AdministradorEN.cs" />
 	<Compile Include="CEN\GrayLine\AdministradorCEN.cs" />
 	<Compile Include="CAD\GrayLine\IAdministradorCAD.cs" />
@@ -209,7 +210,6 @@
 			<Compile Include="CEN\GrayLine\CategoriaCEN_Cambiar_categoria.cs" />
 			
 			
-			<Compile Include="CEN\GrayLine\CategoriaCEN_ReadAll.cs" />
 			
 	<Compile Include="EN\GrayLine\ComentarioEN.cs" />
 	<Compile Include="CEN\GrayLine\ComentarioCEN.cs" />

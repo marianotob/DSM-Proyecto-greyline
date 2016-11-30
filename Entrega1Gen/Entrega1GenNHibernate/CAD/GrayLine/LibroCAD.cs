@@ -511,5 +511,35 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroE
 
         return result;
 }
+public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> BuscarCategoria (int ? idcategoria)
+{
+        System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM LibroEN self where FROM LibroEN lib WHERE lib.Id_categoria=:idcategoria";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("LibroENbuscarCategoriaHQL");
+                query.SetParameter ("idcategoria", idcategoria);
+
+                result = query.List<Entrega1GenNHibernate.EN.GrayLine.LibroEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is Entrega1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new Entrega1GenNHibernate.Exceptions.DataLayerException ("Error in LibroCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

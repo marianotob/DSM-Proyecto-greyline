@@ -45,42 +45,40 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.Capitu
                 // System.Console.WriteLine("Capitulo: "+libroEN.Capitulo.ToString());
                 // System.Console.WriteLine("Tipo de libro: " + libroEN.GetType().ToString());
 
-                if (libroEN.GetType().Name.Equals("GratuitoEN"))
-                {
-                    // guardamos todos los capitulos
-                    result = capituloCAD.BuscarCapitulo(id_libro); // -1 para leerlos todos
-                    // pruebas
-                    /*foreach (CapituloEN capitulos in result)
-                     * {
-                     *  System.Console.WriteLine("Contenido del capitulo: " + capitulos.Contenido.ToString());
-                     * }*/
+                if (libroEN.GetType ().Name.Equals ("GratuitoEN")) {
+                        // guardamos todos los capitulos
+                        result = capituloCAD.BuscarCapitulo (id_libro); // -1 para leerlos todos
+                        // pruebas
+                        /*foreach (CapituloEN capitulos in result)
+                         * {
+                         *  System.Console.WriteLine("Contenido del capitulo: " + capitulos.Contenido.ToString());
+                         * }*/
                 }
-                else
-                {
-                    // como es de pago solo devuelvo el primer capitulo
-                    result.Add(capituloCAD.BuscarCapitulo(id_libro)[0]);
-                    // pruebas
-                    /*foreach (CapituloEN capitulos in result)
-                     * {
-                     *  System.Console.WriteLine("Contenido del capitulo: " + capitulos.Contenido.ToString());
-                     * }*/
+                else{
+                        // como es de pago solo devuelvo el primer capitulo
+                        result.Add (capituloCAD.BuscarCapitulo (id_libro) [0]);
+                        // pruebas
+                        /*foreach (CapituloEN capitulos in result)
+                         * {
+                         *  System.Console.WriteLine("Contenido del capitulo: " + capitulos.Contenido.ToString());
+                         * }*/
                 }
-                        SessionCommit ();
-                }
-                catch (Exception ex)
-                {
-                        SessionRollBack ();
-                        // System.Console.WriteLine(ex.ToString());
-                        throw ex;
-                }
-                finally
-                {
-                        SessionClose ();
-                }
-                return result;
-
-
-                /*PROTECTED REGION END*/
+                SessionCommit ();
         }
+        catch (Exception ex)
+        {
+                SessionRollBack ();
+                // System.Console.WriteLine(ex.ToString());
+                throw ex;
+        }
+        finally
+        {
+                SessionClose ();
+        }
+        return result;
+
+
+        /*PROTECTED REGION END*/
+}
 }
 }

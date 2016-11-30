@@ -85,17 +85,17 @@ public static void InitializeData ()
                 // creamos las entidades, las Cad y los CEN para realizar operaciones
                 IUsuarioCAD _IUsuarioCAD = new UsuarioCAD ();
                 ILibroCAD _ILibroCAD = new LibroCAD ();
-                ICategoriaCAD _ICategoriCAD = new CategoriaCAD ();
+
                 IPagoCAD _IPagoCAD = new PagoCAD ();
                 IGratuitoCAD _IGratuitoCAD = new GratuitoCAD ();
 
-                CategoriaEN categoriaEN = new CategoriaEN ();
-                CategoriaCEN categoriaCEN = new CategoriaCEN (_ICategoriCAD);
-                LibroCEN libroMasterCEN = new LibroCEN ();
+
+
+                LibroCEN libroCEN = new LibroCEN ();
 
 
 
-               
+
 
 
                 #region Usuario/administrador
@@ -140,6 +140,7 @@ public static void InitializeData ()
 
                 #region Categoria
                 // categorias
+
                 ICategoriaCAD _ICategoriaCAD = new CategoriaCAD ();
                 CategoriaEN categoria_1EN = new CategoriaEN ();
                 CategoriaEN categoria_2EN = new CategoriaEN ();
@@ -147,17 +148,23 @@ public static void InitializeData ()
                 CategoriaEN categoria_4EN = new CategoriaEN ();
                 CategoriaEN categoria_5EN = new CategoriaEN ();
 
-                categoria_1EN.Nombre_categoria = Entrega1GenNHibernate.Enumerated.GrayLine.Tipo_categoriaEnum.aventura;
-                categoriaCEN.New_ (categoria_1EN.Nombre_categoria);
-                categoria_2EN.Nombre_categoria = Entrega1GenNHibernate.Enumerated.GrayLine.Tipo_categoriaEnum.fantasia;
-                categoriaCEN.New_ (categoria_2EN.Nombre_categoria);
-                categoria_3EN.Nombre_categoria = Entrega1GenNHibernate.Enumerated.GrayLine.Tipo_categoriaEnum.misterio;
-                categoriaCEN.New_ (categoria_3EN.Nombre_categoria);
-                categoria_4EN.Nombre_categoria = Entrega1GenNHibernate.Enumerated.GrayLine.Tipo_categoriaEnum.romance;
-                categoriaCEN.New_ (categoria_4EN.Nombre_categoria);
-                categoria_5EN.Nombre_categoria = Entrega1GenNHibernate.Enumerated.GrayLine.Tipo_categoriaEnum.terror;
-                categoriaCEN.New_ (categoria_5EN.Nombre_categoria);
 
+                CategoriaCEN categoriaCEN = new CategoriaCEN (_ICategoriaCAD);
+
+                categoria_1EN.Nombre_categoria = Entrega1GenNHibernate.Enumerated.GrayLine.Tipo_categoriaEnum.aventura;
+                var cat1 = categoriaCEN.New_ (categoria_1EN.Nombre_categoria);
+                categoria_2EN.Nombre_categoria = Entrega1GenNHibernate.Enumerated.GrayLine.Tipo_categoriaEnum.fantasia;
+                var cat2 = categoriaCEN.New_ (categoria_2EN.Nombre_categoria);
+                categoria_3EN.Nombre_categoria = Entrega1GenNHibernate.Enumerated.GrayLine.Tipo_categoriaEnum.misterio;
+                var cat3 = categoriaCEN.New_ (categoria_3EN.Nombre_categoria);
+                categoria_4EN.Nombre_categoria = Entrega1GenNHibernate.Enumerated.GrayLine.Tipo_categoriaEnum.romance;
+                var cat4 = categoriaCEN.New_ (categoria_4EN.Nombre_categoria);
+                categoria_5EN.Nombre_categoria = Entrega1GenNHibernate.Enumerated.GrayLine.Tipo_categoriaEnum.terror;
+                var cat5 = categoriaCEN.New_ (categoria_5EN.Nombre_categoria);
+
+                System.Collections.Generic.List<int> listaCategorias = new List<int>();
+                listaCategorias.Add (cat1);
+                listaCategorias.Add (cat3);
 
                 #endregion
 
@@ -206,8 +213,6 @@ public static void InitializeData ()
                 // lista de usuarios
                 // creamos listas de usuarios y categorias para crear los libros
                 System.Collections.Generic.List<String> listaUsuarios = new List<string>();
-                System.Collections.Generic.List<int> listaCategorias = new List<int>();
-
                 listaUsuarios.Add (usuario1EN.Email);
 
                 /* Se crean dos libros gratuitos y uno de pago
@@ -280,23 +285,23 @@ public static void InitializeData ()
                 #endregion
 
                 #region Comentario
-                
-                IComentarioCAD _IComentarioCAD = new ComentarioCAD();
-                ComentarioEN comentarioEN = new ComentarioEN();
-                ComentarioCEN comentarioCEN = new ComentarioCEN(_IComentarioCAD);
 
-                
+                IComentarioCAD _IComentarioCAD = new ComentarioCAD ();
+                ComentarioEN comentarioEN = new ComentarioEN ();
+                ComentarioCEN comentarioCEN = new ComentarioCEN (_IComentarioCAD);
+
+
                 /* Inicializamos datos de comentarios */
                 // Comentario 1
                 comentarioEN.Texto_comentario = "Mola mucho este libro!!!";
-                comentarioEN.Baneado= true;
-                var comentario1 = comentarioCEN.New_(comentarioEN.Texto_comentario, idLibro1, comentarioEN.Baneado);
-               
+                comentarioEN.Baneado = true;
+                var comentario1 = comentarioCEN.New_ (comentarioEN.Texto_comentario, idLibro1, comentarioEN.Baneado);
+
                 // Comentario 2
                 comentarioEN.Texto_comentario = "Mola mucho este libro otra vez!!!";
                 comentarioEN.Baneado = true;
 
-                var comentario2 = comentarioCEN.New_(comentarioEN.Texto_comentario, idLibro1, comentarioEN.Baneado);
+                var comentario2 = comentarioCEN.New_ (comentarioEN.Texto_comentario, idLibro1, comentarioEN.Baneado);
 
                 #endregion
 
@@ -305,27 +310,25 @@ public static void InitializeData ()
                 // llamadas paa comprobar bbdd y metodos custom
                 var r = usuarioCEN.ReadAll (0, 10);
                 var l = gratuitoCEN.ReadAll (0, 10);
-                var mostrarLibros = libroMasterCEN.VerLibreria (0, 10);
+                var mostrarLibros = libroCEN.VerLibreria (0, 10);
                 var c = capituloCEN.ReadAll (0, 10);
                 System.Console.WriteLine (mostrarLibros.ToString ());
                 System.Console.WriteLine (usuario2adminEN.Contrasenya);
                 System.Console.WriteLine (usuarioCEN.IniciarSesion (usuario2adminEN.Email, usuario2adminEN.Contrasenya));
-                var prueba_filtrolibro = libroMasterCEN.BuscarLibro ("El Quijote");
+                var prueba_filtrolibro = libroCEN.BuscarLibro ("El Quijote");
 
                 // comprobar capitulos de libro
                 CapituloCP capituloCP = new CapituloCP ();
 
                 /* Pruebas para ver los comentarios publicados y no baneados */
-                IList<ComentarioEN> listaComentarios = comentarioCEN.VerComentarios(idLibro1);
+                IList<ComentarioEN> listaComentarios = comentarioCEN.VerComentarios (idLibro1);
                 // Para visualizar el contenido de cada comentario
-                if (listaComentarios != null)
-                {
-                    foreach (ComentarioEN comentarios in listaComentarios)
-                    {
-                        System.Console.WriteLine(comentarios.Texto_comentario.ToString());
-                    }
+                if (listaComentarios != null) {
+                        foreach (ComentarioEN comentarios in listaComentarios) {
+                                System.Console.WriteLine (comentarios.Texto_comentario.ToString ());
+                        }
                 }
-                
+
                 /* Creamos una lista de capitulos del libro del id pasado por parametro */
                 IList<CapituloEN> listCapitulos = capituloCP.LeerCapitulo (idLibro1);
 
@@ -336,6 +339,28 @@ public static void InitializeData ()
                         }
                 }
 
+                /* Creamos una lista de categorias del libro del id pasado por parametro */
+                IList<CategoriaEN> listCategorias = categoriaCEN.VerCategorias (0, 10);
+
+                // Para visualizar el contenido de cada capitulo
+                if (listCategorias != null) {
+                        foreach (CategoriaEN categorias in listCategorias) {
+                                System.Console.WriteLine (categorias.Nombre_categoria.ToString ());
+                        }
+                }
+
+
+
+                /* Creamos una lista de Libros paar ver su categoria pasada por parametro */
+                IList<LibroEN> listLibros = libroCEN.BuscarCategoria (cat1);
+
+
+                // Para visualizar el contenido de cada capitulo
+                if (listLibros != null) {
+                        foreach (LibroEN libros in listLibros) {
+                                System.Console.WriteLine (libros.Titulo.ToString ());
+                        }
+                }
 
 
                 #endregion

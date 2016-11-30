@@ -20,5 +20,8 @@ void Cambiar_categoria (CategoriaEN categoria);
 
 void Destroy (int id_categoria
               );
+
+
+System.Collections.Generic.IList<CategoriaEN> VerCategorias (int first, int size);
 }
 }

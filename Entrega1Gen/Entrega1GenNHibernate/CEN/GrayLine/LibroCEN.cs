@@ -131,5 +131,9 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroE
 {
         return _ILibroCAD.BuscarLibro (nombre);
 }
+public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> BuscarCategoria (int ? idcategoria)
+{
+        return _ILibroCAD.BuscarCategoria (idcategoria);
+}
 }
 }

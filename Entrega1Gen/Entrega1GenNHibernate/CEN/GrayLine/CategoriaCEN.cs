@@ -58,5 +58,13 @@ public void Destroy (int id_categoria
 {
         _ICategoriaCAD.Destroy (id_categoria);
 }
+
+public System.Collections.Generic.IList<CategoriaEN> VerCategorias (int first, int size)
+{
+        System.Collections.Generic.IList<CategoriaEN> list = null;
+
+        list = _ICategoriaCAD.VerCategorias (first, size);
+        return list;
+}
 }
 }
