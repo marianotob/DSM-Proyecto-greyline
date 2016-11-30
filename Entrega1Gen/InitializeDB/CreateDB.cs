@@ -94,6 +94,10 @@ public static void InitializeData ()
                 LibroCEN libroMasterCEN = new LibroCEN ();
 
 
+
+               
+
+
                 #region Usuario/administrador
 
                 UsuarioEN usuario1EN, usuario2adminEN = new UsuarioEN ();
@@ -276,6 +280,23 @@ public static void InitializeData ()
                 #endregion
 
                 #region Comentario
+                
+                IComentarioCAD _IComentarioCAD = new ComentarioCAD();
+                ComentarioEN comentarioEN = new ComentarioEN();
+                ComentarioCEN comentarioCEN = new ComentarioCEN(_IComentarioCAD);
+
+                
+                /* Inicializamos datos de comentarios */
+                // Comentario 1
+                comentarioEN.Texto_comentario = "Mola mucho este libro!!!";
+                comentarioEN.Baneado= true;
+                var comentario1 = comentarioCEN.New_(comentarioEN.Texto_comentario, idLibro1, comentarioEN.Baneado);
+               
+                // Comentario 2
+                comentarioEN.Texto_comentario = "Mola mucho este libro otra vez!!!";
+                comentarioEN.Baneado = true;
+
+                var comentario2 = comentarioCEN.New_(comentarioEN.Texto_comentario, idLibro1, comentarioEN.Baneado);
 
                 #endregion
 
@@ -294,10 +315,19 @@ public static void InitializeData ()
                 // comprobar capitulos de libro
                 CapituloCP capituloCP = new CapituloCP ();
 
-
+                /* Pruebas para ver los comentarios publicados y no baneados */
+                IList<ComentarioEN> listaComentarios = comentarioCEN.VerComentarios(idLibro1);
+                // Para visualizar el contenido de cada comentario
+                if (listaComentarios != null)
+                {
+                    foreach (ComentarioEN comentarios in listaComentarios)
+                    {
+                        System.Console.WriteLine(comentarios.Texto_comentario.ToString());
+                    }
+                }
+                
                 /* Creamos una lista de capitulos del libro del id pasado por parametro */
-                IList<CapituloEN> listCapitulos = capituloCP.LeerCapitulo (idLibro3);
-
+                IList<CapituloEN> listCapitulos = capituloCP.LeerCapitulo (idLibro1);
 
                 // Para visualizar el contenido de cada capitulo
                 if (listCapitulos != null) {
