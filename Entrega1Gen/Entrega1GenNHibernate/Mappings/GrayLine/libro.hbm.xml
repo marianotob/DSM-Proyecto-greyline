@@ -115,6 +115,5 @@
 		  
 		  <query name="LibroENReadAllHQL">from LibroEN</query>
 		  <query name="LibroENbuscarLibroHQL"><![CDATA[FROM LibroEN li WHERE  (li.Titulo= :nombre)]]></query>
-		  <query name="LibroENbuscarCategoriaHQL"><![CDATA[FROM LibroEN lib WHERE lib.Id_categoria=:idcategoria]]></query>
 		</hibernate-mapping>
 	
