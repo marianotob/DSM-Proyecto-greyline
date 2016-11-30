@@ -36,5 +36,6 @@
 		 </class>	
 		  
 		  <query name="ComentarioENReadAllHQL">from ComentarioEN</query>
+		  <query name="ComentarioENverComentariosHQL"><![CDATA[FROM ComentarioEN com WHERE com.Baneado=false AND com.Libro=:idlibro]]></query>
 		</hibernate-mapping>
 	

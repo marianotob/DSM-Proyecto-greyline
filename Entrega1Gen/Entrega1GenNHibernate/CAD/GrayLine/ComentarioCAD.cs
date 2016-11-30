@@ -197,17 +197,18 @@ public void Destroy (int id
         }
 }
 
-public System.Collections.Generic.IList<ComentarioEN> VerComentarios (int first, int size)
+public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.ComentarioEN> VerComentarios (int ? idlibro)
 {
-        System.Collections.Generic.IList<ComentarioEN> result = null;
+        System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.ComentarioEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                if (size > 0)
-                        result = session.CreateCriteria (typeof(ComentarioEN)).
-                                 SetFirstResult (first).SetMaxResults (size).List<ComentarioEN>();
-                else
-                        result = session.CreateCriteria (typeof(ComentarioEN)).List<ComentarioEN>();
+                //String sql = @"FROM ComentarioEN self where FROM ComentarioEN com WHERE com.Baneado=false AND com.Libro=:idlibro";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("ComentarioENverComentariosHQL");
+                query.SetParameter ("idlibro", idlibro);
+
+                result = query.List<Entrega1GenNHibernate.EN.GrayLine.ComentarioEN>();
                 SessionCommit ();
         }
 

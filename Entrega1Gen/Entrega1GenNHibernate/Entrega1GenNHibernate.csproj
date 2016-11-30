@@ -220,7 +220,6 @@
 			<Compile Include="CEN\GrayLine\ComentarioCEN_EditarComentario.cs" />
 			
 			
-			<Compile Include="CEN\GrayLine\ComentarioCEN_VerComentarios.cs" />
 			
 	<Compile Include="EN\GrayLine\ValoracionEN.cs" />
 	<Compile Include="CEN\GrayLine\ValoracionCEN.cs" />
