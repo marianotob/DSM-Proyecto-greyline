@@ -50,8 +50,5 @@ void Valorar (int p_Libro_OID, System.Collections.Generic.IList<int> p_valoracio
 void Comentar (int p_Libro_OID, System.Collections.Generic.IList<int> p_comentario_OIDs);
 
 System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> BuscarLibro (string nombre);
-
-
-System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> BuscarCapitulo ();
 }
 }

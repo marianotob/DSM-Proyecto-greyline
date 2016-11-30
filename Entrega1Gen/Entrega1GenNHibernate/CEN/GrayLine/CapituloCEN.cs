@@ -86,5 +86,9 @@ public System.Collections.Generic.IList<CapituloEN> ReadAll (int first, int size
         list = _ICapituloCAD.ReadAll (first, size);
         return list;
 }
+public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.CapituloEN> BuscarCapitulo (int ? idlibro)
+{
+        return _ICapituloCAD.BuscarCapitulo (idlibro);
+}
 }
 }

@@ -150,7 +150,6 @@
 			
 			
 			
-			
 	<Compile Include="EN\GrayLine\AdministradorEN.cs" />
 	<Compile Include="CEN\GrayLine\AdministradorCEN.cs" />
 	<Compile Include="CAD\GrayLine\IAdministradorCAD.cs" />
@@ -179,6 +178,7 @@
 			
 			
 			<Compile Include="CP\GrayLine\CapituloCP_LeerCapitulo.cs" />
+			
 			
 	<Compile Include="EN\GrayLine\PagoEN.cs" />
 	<Compile Include="CEN\GrayLine\PagoCEN.cs" />

@@ -31,5 +31,8 @@ System.Collections.Generic.IList<CapituloEN> ReadAll (int first, int size);
 
 
 System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.CapituloEN> LeerCapitulo (int ? id_libro);
+
+
+System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.CapituloEN> BuscarCapitulo (int ? idlibro);
 }
 }

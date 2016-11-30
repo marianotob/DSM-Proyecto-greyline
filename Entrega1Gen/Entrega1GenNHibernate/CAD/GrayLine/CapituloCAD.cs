@@ -318,5 +318,35 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.Capitu
 
         return result;
 }
+public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.CapituloEN> BuscarCapitulo (int ? idlibro)
+{
+        System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.CapituloEN> result;
+        try
+        {
+                SessionInitializeTransaction ();
+                //String sql = @"FROM CapituloEN self where FROM CapituloEN cap WHERE cap.Libro=:idlibro";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("CapituloENbuscarCapituloHQL");
+                query.SetParameter ("idlibro", idlibro);
+
+                result = query.List<Entrega1GenNHibernate.EN.GrayLine.CapituloEN>();
+                SessionCommit ();
+        }
+
+        catch (Exception ex) {
+                SessionRollBack ();
+                if (ex is Entrega1GenNHibernate.Exceptions.ModelException)
+                        throw ex;
+                throw new Entrega1GenNHibernate.Exceptions.DataLayerException ("Error in CapituloCAD.", ex);
+        }
+
+
+        finally
+        {
+                SessionClose ();
+        }
+
+        return result;
+}
 }
 }

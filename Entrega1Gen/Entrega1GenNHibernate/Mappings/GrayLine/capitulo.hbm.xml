@@ -54,5 +54,6 @@
 		  
 		  <query name="CapituloENReadAllHQL">from CapituloEN</query>
 		  <query name="CapituloENleerCapituloHQL"><![CDATA[FROM CapituloEN]]></query>
+		  <query name="CapituloENbuscarCapituloHQL"><![CDATA[FROM CapituloEN cap WHERE cap.Libro=:idlibro]]></query>
 		</hibernate-mapping>
 	
