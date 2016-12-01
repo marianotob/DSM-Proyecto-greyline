@@ -19,6 +19,6 @@ void Pagar (PagoEN pago);
 
 int New_ (PagoEN pago);
 
-System.Collections.Generic.IList<PagoEN> ReadAll (int first, int size);
+System.Collections.Generic.IList<PagoEN> VerLibrosPago (int first, int size);
 }
 }

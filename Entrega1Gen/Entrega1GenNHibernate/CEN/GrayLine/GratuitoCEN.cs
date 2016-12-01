@@ -93,11 +93,11 @@ public int New_ (string p_titulo, string p_portada, string p_descripcion, Nullab
         return oid;
 }
 
-public System.Collections.Generic.IList<GratuitoEN> ReadAll (int first, int size)
+public System.Collections.Generic.IList<GratuitoEN> VerLibrosGratuitos (int first, int size)
 {
         System.Collections.Generic.IList<GratuitoEN> list = null;
 
-        list = _IGratuitoCAD.ReadAll (first, size);
+        list = _IGratuitoCAD.VerLibrosGratuitos (first, size);
         return list;
 }
 }

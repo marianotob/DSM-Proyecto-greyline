@@ -16,6 +16,6 @@ void ModifyDefault (GratuitoEN gratuito);
 
 int New_ (GratuitoEN gratuito);
 
-System.Collections.Generic.IList<GratuitoEN> ReadAll (int first, int size);
+System.Collections.Generic.IList<GratuitoEN> VerLibrosGratuitos (int first, int size);
 }
 }

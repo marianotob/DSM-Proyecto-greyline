@@ -201,7 +201,7 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_qZZbTadZEea59p9nOIUK-A" name="p_precio" type="Float"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_qZZbTqdZEea59p9nOIUK-A" name="p_pagado" type="Boolean"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_3WEb8KZnEeat7_WgrJhB0A" name="readAll" operationType="ReadAll" type="Object" collectionType="List" typeObject="_Ryj7cKUAEeaH7OKPPz799w"/>
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_3WEb8KZnEeat7_WgrJhB0A" name="verLibrosPago" operationType="ReadAll" type="Object" collectionType="List" typeObject="_Ryj7cKUAEeaH7OKPPz799w"/>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_TiwtwKUAEeaH7OKPPz799w" alias="precio" name="precio" type="Float"/>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_iF18sKUAEeaH7OKPPz799w" alias="pagado" name="pagado" type="Boolean"/>
     </elements>
@@ -220,7 +220,7 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_qZZbQqdZEea59p9nOIUK-A" name="p_baneado" type="Boolean"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_qZZbQ6dZEea59p9nOIUK-A" name="p_num_denuncias" type="Integer"/>
       </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_5n57sKZnEeat7_WgrJhB0A" name="readAll" operationType="ReadAll" type="Object" collectionType="List" typeObject="_XN_pYKUAEeaH7OKPPz799w"/>
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_5n57sKZnEeat7_WgrJhB0A" name="verLibrosGratuitos" operationType="ReadAll" type="Object" collectionType="List" typeObject="_XN_pYKUAEeaH7OKPPz799w"/>
     </elements>
     <elements xmi:type="es.ua.dlsi.ooh:Inheritance" xmi:id="_T6dmoKUBEeaH7OKPPz799w" name="inheritance2" son="_XN_pYKUAEeaH7OKPPz799w" father="_QeKtsKQ3EeamjJeFffQGjw"/>
     <elements xmi:type="es.ua.dlsi.ooh:Inheritance" xmi:id="_Vn5_4KUBEeaH7OKPPz799w" name="inheritance3" son="_Ryj7cKUAEeaH7OKPPz799w" father="_QeKtsKQ3EeamjJeFffQGjw"/>

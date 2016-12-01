@@ -147,7 +147,7 @@ public int New_ (GratuitoEN gratuito)
         return gratuito.Id_libro;
 }
 
-public System.Collections.Generic.IList<GratuitoEN> ReadAll (int first, int size)
+public System.Collections.Generic.IList<GratuitoEN> VerLibrosGratuitos (int first, int size)
 {
         System.Collections.Generic.IList<GratuitoEN> result = null;
         try

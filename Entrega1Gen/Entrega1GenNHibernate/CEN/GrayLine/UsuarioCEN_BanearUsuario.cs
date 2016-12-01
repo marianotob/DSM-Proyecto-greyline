@@ -24,24 +24,22 @@ public void BanearUsuario (string p_oid)
         /*PROTECTED REGION ID(Entrega1GenNHibernate.CEN.GrayLine_Usuario_banearUsuario) ENABLED START*/
 
         // Write here your custom code...
-    try
-    {
- 
-        // capturamos el usuario baneado
-        UsuarioEN usuarioEN = _IUsuarioCAD.ReadOIDDefault(p_oid);
-
-        if (p_oid != null && usuarioEN.Baneado == false)
+        try
         {
-            usuarioEN.Baneado = true;
-            System.Console.WriteLine("Lo baneo: " + usuarioEN.Baneado);
+                // capturamos el usuario baneado
+                UsuarioEN usuarioEN = _IUsuarioCAD.ReadOIDDefault (p_oid);
+
+                /* Como comprobamos que el que realiza la accion es el administrador??*/
+                if (p_oid != null && usuarioEN.Baneado == false) {
+                        usuarioEN.Baneado = true;
+                        System.Console.WriteLine ("Lo baneo: " + usuarioEN.Baneado);
+                }
         }
-    }
-    catch (Exception ex)
-    {
-        System.Console.WriteLine(ex.InnerException);
-        throw ex;
-        
-    }
+        catch (Exception ex)
+        {
+                System.Console.WriteLine (ex.InnerException);
+                throw ex;
+        }
 
         // throw new NotImplementedException ("Method BanearUsuario() not yet implemented.");
 

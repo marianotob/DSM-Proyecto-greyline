@@ -176,7 +176,7 @@ public int New_ (PagoEN pago)
         return pago.Id_libro;
 }
 
-public System.Collections.Generic.IList<PagoEN> ReadAll (int first, int size)
+public System.Collections.Generic.IList<PagoEN> VerLibrosPago (int first, int size)
 {
         System.Collections.Generic.IList<PagoEN> result = null;
         try

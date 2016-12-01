@@ -97,11 +97,11 @@ public int New_ (string p_titulo, string p_portada, string p_descripcion, Nullab
         return oid;
 }
 
-public System.Collections.Generic.IList<PagoEN> ReadAll (int first, int size)
+public System.Collections.Generic.IList<PagoEN> VerLibrosPago (int first, int size)
 {
         System.Collections.Generic.IList<PagoEN> list = null;
 
-        list = _IPagoCAD.ReadAll (first, size);
+        list = _IPagoCAD.VerLibrosPago (first, size);
         return list;
 }
 }

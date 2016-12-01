@@ -31,8 +31,7 @@ public bool IniciarSesion (string p_oid, string pass)
         UsuarioEN usuarioEN = _IUsuarioCAD.ReadOIDDefault (p_oid);
         bool login = false;
 
-        if (pass != null && passCifrado.Equals(usuarioEN.Contrasenya))
-        {
+        if (pass != null && passCifrado.Equals (usuarioEN.Contrasenya)) {
                 login = true;
         }
 
