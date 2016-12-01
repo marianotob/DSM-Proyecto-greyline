@@ -42,9 +42,7 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.Capitu
 
 
                 result = new List<CapituloEN>();
-                // System.Console.WriteLine("Capitulo: "+libroEN.Capitulo.ToString());
-                // System.Console.WriteLine("Tipo de libro: " + libroEN.GetType().ToString());
-
+              
                 if (libroEN.GetType ().Name.Equals ("GratuitoEN")) {
                         // guardamos todos los capitulos
                         result = capituloCAD.BuscarCapitulo (id_libro); // -1 para leerlos todos

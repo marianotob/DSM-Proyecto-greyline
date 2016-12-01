@@ -19,9 +19,6 @@ void Destroy (string email
               );
 
 
-void BanearUsuario (AdministradorEN administrador);
-
-
 void EliminarComentario (AdministradorEN administrador);
 
 

@@ -160,29 +160,6 @@ public void Destroy (string email
         }
 }
 
-public void BanearUsuario (AdministradorEN administrador)
-{
-        try
-        {
-                SessionInitializeTransaction ();
-                AdministradorEN administradorEN = (AdministradorEN)session.Load (typeof(AdministradorEN), administrador.Email);
-                session.Update (administradorEN);
-                SessionCommit ();
-        }
-
-        catch (Exception ex) {
-                SessionRollBack ();
-                if (ex is Entrega1GenNHibernate.Exceptions.ModelException)
-                        throw ex;
-                throw new Entrega1GenNHibernate.Exceptions.DataLayerException ("Error in AdministradorCAD.", ex);
-        }
-
-
-        finally
-        {
-                SessionClose ();
-        }
-}
 public void EliminarComentario (AdministradorEN administrador)
 {
         try

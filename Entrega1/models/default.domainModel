@@ -42,6 +42,9 @@
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_DGViEKg2Eeamj9cmSiEvwg" name="buscarUsuario" operationType="ReadFilter" type="Object" collectionType="List" typeObject="_p0z3wKQ1EeamjJeFffQGjw" filter="FROM UsuarioEN us WHERE  (us.Nombre= :mote)" automaticSynchronize="false">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_gxXAgKg2Eeamj9cmSiEvwg" name="arg0"/>
       </operations>
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_nG_uMLffEeaPDOJqxGUonw" name="banearUsuario" type="Void">
+        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_nHJfMLffEeaPDOJqxGUonw" name="p_oid" type="OID" typeObject="_p0z3wKQ1EeamjJeFffQGjw"/>
+      </operations>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_18TOAKQ1EeamjJeFffQGjw" alias="nombre" name="nombre"/>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_8KE-4KQ1EeamjJeFffQGjw" alias="contrasenya" name="contrasenya" type="Password" unique="true"/>
       <attributes xmi:type="es.ua.dlsi.ooh:Attribute" xmi:id="_-3hckKQ1EeamjJeFffQGjw" alias="email" name="email" isOID="true" unique="true"/>
@@ -130,9 +133,6 @@
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_wOCjVKQ4EeamjJeFffQGjw" name="destroy" operationType="Destroy" type="Void">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_qZfh4adZEea59p9nOIUK-A" name="p_Administrador_OID" type="OID" typeObject="_qBN0sKQ4EeamjJeFffQGjw"/>
-      </operations>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_BzLOAKQ5EeamjJeFffQGjw" name="banearUsuario" operationType="Modifier" type="Void" automaticSynchronize="false" customizedTransaction="true">
-        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_IFypEKdOEea59p9nOIUK-A" name="p_Administrador_OID" type="OID" typeObject="_qBN0sKQ4EeamjJeFffQGjw"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_DyezUKQ5EeamjJeFffQGjw" name="eliminarComentario" operationType="Modifier" type="Void" automaticSynchronize="false" customizedTransaction="true">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_QFRysKdPEea59p9nOIUK-A" name="p_Administrador_OID" type="OID" typeObject="_qBN0sKQ4EeamjJeFffQGjw"/>
@@ -413,6 +413,13 @@
           <styles xmi:type="notation:FillStyle" xmi:id="_DHk4M6g2Eeamj9cmSiEvwg"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DHk4NKg2Eeamj9cmSiEvwg"/>
         </children>
+        <children xmi:type="notation:Node" xmi:id="_nHSpILffEeaPDOJqxGUonw" type="3004" element="_nG_uMLffEeaPDOJqxGUonw">
+          <children xmi:type="notation:DecorationNode" xmi:id="_nHcaIbffEeaPDOJqxGUonw" type="5004"/>
+          <styles xmi:type="notation:DescriptionStyle" xmi:id="_nHSpIbffEeaPDOJqxGUonw"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_nHSpIrffEeaPDOJqxGUonw"/>
+          <styles xmi:type="notation:FillStyle" xmi:id="_nHSpI7ffEeaPDOJqxGUonw"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nHcaILffEeaPDOJqxGUonw"/>
+        </children>
         <styles xmi:type="notation:SortingStyle" xmi:id="_p1SY5aQ1EeamjJeFffQGjw"/>
         <styles xmi:type="notation:FilteringStyle" xmi:id="_p1SY5qQ1EeamjJeFffQGjw"/>
       </children>
@@ -613,13 +620,6 @@
           <styles xmi:type="notation:FontStyle" xmi:id="_wOIp_6Q4EeamjJeFffQGjw" fontName="Segoe UI"/>
           <styles xmi:type="notation:FillStyle" xmi:id="_wOIqAKQ4EeamjJeFffQGjw"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_wOIqAaQ4EeamjJeFffQGjw"/>
-        </children>
-        <children xmi:type="notation:Node" xmi:id="_BzLOAqQ5EeamjJeFffQGjw" type="3004" element="_BzLOAKQ5EeamjJeFffQGjw">
-          <children xmi:type="notation:DecorationNode" xmi:id="_BzLOB6Q5EeamjJeFffQGjw" type="5004"/>
-          <styles xmi:type="notation:DescriptionStyle" xmi:id="_BzLOA6Q5EeamjJeFffQGjw"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_BzLOBKQ5EeamjJeFffQGjw" fontName="Segoe UI"/>
-          <styles xmi:type="notation:FillStyle" xmi:id="_BzLOBaQ5EeamjJeFffQGjw"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_BzLOBqQ5EeamjJeFffQGjw"/>
         </children>
         <children xmi:type="notation:Node" xmi:id="_DyrAkKQ5EeamjJeFffQGjw" type="3004" element="_DyezUKQ5EeamjJeFffQGjw">
           <children xmi:type="notation:DecorationNode" xmi:id="_DyrAlaQ5EeamjJeFffQGjw" type="5004"/>

@@ -124,6 +124,8 @@
 			
 			
 			
+			<Compile Include="CEN\GrayLine\UsuarioCEN_BanearUsuario.cs" />
+			
 	<Compile Include="EN\GrayLine\LibroEN.cs" />
 	<Compile Include="CEN\GrayLine\LibroCEN.cs" />
 	<Compile Include="CAD\GrayLine\ILibroCAD.cs" />
@@ -157,8 +159,6 @@
 	<Compile Include="CAD\GrayLine\AdministradorCAD.cs" />
 	<Compile Include="CP\GrayLine\AdministradorCP.cs" />
 			
-			
-			<Compile Include="CP\GrayLine\AdministradorCP_BanearUsuario.cs" />
 			
 			<Compile Include="CP\GrayLine\AdministradorCP_EliminarComentario.cs" />
 			

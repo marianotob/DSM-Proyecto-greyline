@@ -122,9 +122,9 @@ public static void InitializeData ()
                 usuario2adminEN.Contrasenya = "1234";
 
                 // registro de usuarios
-                usuarioCEN.Registrarse (usuario1EN.Nombre, usuario1EN.Contrasenya, usuario1EN.Email, usuario1EN.Edad, usuario1EN.Fecha_alta, usuario1EN.Foto, usuario1EN.Bibliografia, usuario1EN.Baneado);
+                var usu1= usuarioCEN.Registrarse (usuario1EN.Nombre, usuario1EN.Contrasenya, usuario1EN.Email, usuario1EN.Edad, usuario1EN.Fecha_alta, usuario1EN.Foto, usuario1EN.Bibliografia, usuario1EN.Baneado);
                 // administrador
-                administradorCEN.New_ (usuario2adminEN.Nombre, usuario2adminEN.Contrasenya, usuario2adminEN.Email, usuario2adminEN.Edad, usuario2adminEN.Fecha_alta, usuario2adminEN.Foto, usuario2adminEN.Bibliografia, usuario2adminEN.Baneado);
+                var admin1 = administradorCEN.New_ (usuario2adminEN.Nombre, usuario2adminEN.Contrasenya, usuario2adminEN.Email, usuario2adminEN.Edad, usuario2adminEN.Fecha_alta, usuario2adminEN.Foto, usuario2adminEN.Bibliografia, usuario2adminEN.Baneado);
                 #endregion
 
                 #region Categoria
@@ -139,7 +139,7 @@ public static void InitializeData ()
 
 
                 CategoriaCEN categoriaCEN = new CategoriaCEN (_ICategoriaCAD);
-
+            /* Creamos las categorias y almacenamos su OID */
                 categoria_1EN.Nombre_categoria = Entrega1GenNHibernate.Enumerated.GrayLine.Tipo_categoriaEnum.aventura;
                 var cat1 = categoriaCEN.New_ (categoria_1EN.Nombre_categoria);
                 categoria_2EN.Nombre_categoria = Entrega1GenNHibernate.Enumerated.GrayLine.Tipo_categoriaEnum.fantasia;
@@ -151,9 +151,16 @@ public static void InitializeData ()
                 categoria_5EN.Nombre_categoria = Entrega1GenNHibernate.Enumerated.GrayLine.Tipo_categoriaEnum.terror;
                 var cat5 = categoriaCEN.New_ (categoria_5EN.Nombre_categoria);
 
+            /* Creamos dos listas de categorias para los diferentes libros */
                 System.Collections.Generic.List<int> listaCategorias = new List<int>();
+                System.Collections.Generic.List<int> listaCategorias2 = new List<int>();
+                
                 listaCategorias.Add (cat1);
                 listaCategorias.Add (cat3);
+
+                listaCategorias2.Add(cat2);
+                listaCategorias2.Add(cat4);
+                listaCategorias2.Add(cat5);
 
                 #endregion
 
@@ -164,8 +171,9 @@ public static void InitializeData ()
                 IPagoCAD _IPagoCAD = new PagoCAD ();
                 IGratuitoCAD _IGratuitoCAD = new GratuitoCAD ();
                 GratuitoEN libro1EN = new GratuitoEN ();
-                GratuitoEN libro2EN = new GratuitoEN ();
+                GratuitoEN libro2EN = new GratuitoEN();
                 PagoEN libro3EN = new PagoEN ();
+                PagoEN libro4EN = new PagoEN();
 
                 GratuitoCEN gratuitoCEN = new GratuitoCEN (_IGratuitoCAD);
                 PagoCEN PagoCEN = new PagoCEN (_IPagoCAD);
@@ -204,6 +212,16 @@ public static void InitializeData ()
                 libro3EN.Precio = 12;
                 libro3EN.Pagado = false;
 
+              
+                //Libro 4 ----PUBLICADO
+                libro4EN.Titulo = "El Don apacible";
+                libro4EN.Portada = @"http://imagenesdeamorlindas.com/wp-content/uploads/2013/10/imagenes-lindas-de-amor.jpg";
+                libro4EN.Descripcion = "Novela Rusa de Mihayl Sholoyov";
+                libro4EN.Fecha = DateTime.Today;
+                libro4EN.Publicado = true;
+                libro4EN.Baneado = false;
+                libro4EN.Num_denuncias = 0;
+
                 // lista de usuarios
                 // creamos listas de usuarios y categorias para crear los libros
                 System.Collections.Generic.List<String> listaUsuarios = new List<string>();
@@ -214,6 +232,8 @@ public static void InitializeData ()
                 int idLibro1 = gratuitoCEN.New_ (libro1EN.Titulo, libro1EN.Portada, libro1EN.Descripcion, libro1EN.Fecha, libro1EN.Publicado, listaUsuarios, listaCategorias, libro1EN.Baneado, libro1EN.Num_denuncias);
                 int idLibro2 = gratuitoCEN.New_ (libro2EN.Titulo, libro2EN.Portada, libro2EN.Descripcion, libro2EN.Fecha, libro2EN.Publicado, listaUsuarios, listaCategorias, libro2EN.Baneado, libro2EN.Num_denuncias);
                 int idLibro3 = PagoCEN.New_ (libro3EN.Titulo, libro3EN.Portada, libro3EN.Descripcion, libro3EN.Fecha, libro3EN.Publicado, listaUsuarios, listaCategorias, libro3EN.Baneado, libro3EN.Num_denuncias, 9, false);
+                int idLibro4 = PagoCEN.New_(libro4EN.Titulo, libro4EN.Portada, libro4EN.Descripcion, libro4EN.Fecha, libro4EN.Publicado, listaUsuarios, listaCategorias2, libro4EN.Baneado, libro4EN.Num_denuncias, 9, false);
+
                 #endregion
 
 
@@ -330,7 +350,7 @@ public static void InitializeData ()
                 /* Creamos una lista de categorias del libro del id pasado por parametro */
                 IList<CategoriaEN> listCategorias = categoriaCEN.VerCategorias (0, 10);
 
-                // Para visualizar el contenido de cada capitulo
+                // Para visualizar el contenido de categorias. Se muestran todas
                 if (listCategorias != null) {
                         foreach (CategoriaEN categorias in listCategorias) {
                                 System.Console.WriteLine (categorias.Nombre_categoria.ToString ());
@@ -338,21 +358,15 @@ public static void InitializeData ()
                 }
 
                 /* Creamos una lista de Libros paar ver su categoria pasada por parametro */
+                /* La categoria cat1 tiene tres libros t cat2 solo uno */
+                IList<LibroEN> listLibros = libroCEN.BuscarLibroPorCategoria (cat1);
+                IList<LibroEN> listLibros2 = libroCEN.BuscarLibroPorCategoria(cat2);
 
-                IList<LibroEN> listLibros = libroCEN.BuscarLibroPorCategoria(cat1);
+                /* Prueba para bannear usuario. Se le paa el OID del usuario1EN y lo bannea*/
 
-                /* cuando hacemos la consulta, comparamos un entero con una lista ya que en el
-                 * new libro recibe las categorias como listas
-                 *
-                 *
-                 * // Para visualizar lis libros creados
-                 * if (listLibros != null) {
-                 *     foreach (LibroEN libros in listLibros) {
-                 *            System.Console.WriteLine (libros.Titulo.ToString ());
-                 *      }
-                 * }
-                 *
-                 */
+                usuarioCEN.BanearUsuario(usu1);
+
+               
                 #endregion
 
                 /*PROTECTED REGION END*/
