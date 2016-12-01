@@ -52,6 +52,6 @@ void Comentar (int p_Libro_OID, System.Collections.Generic.IList<int> p_comentar
 System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> BuscarLibro (string nombre);
 
 
-System.Collections.Generic.IList<LibroEN> BuscarCategoria (int first, int size);
+System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> BuscarLibroPorCategoria (int ? id_categoria);
 }
 }

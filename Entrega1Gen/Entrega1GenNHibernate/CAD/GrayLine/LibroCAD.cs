@@ -511,17 +511,18 @@ public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroE
 
         return result;
 }
-public System.Collections.Generic.IList<LibroEN> BuscarCategoria (int first, int size)
+public System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> BuscarLibroPorCategoria (int ? id_categoria)
 {
-        System.Collections.Generic.IList<LibroEN> result = null;
+        System.Collections.Generic.IList<Entrega1GenNHibernate.EN.GrayLine.LibroEN> result;
         try
         {
                 SessionInitializeTransaction ();
-                if (size > 0)
-                        result = session.CreateCriteria (typeof(LibroEN)).
-                                 SetFirstResult (first).SetMaxResults (size).List<LibroEN>();
-                else
-                        result = session.CreateCriteria (typeof(LibroEN)).List<LibroEN>();
+                //String sql = @"FROM LibroEN self where select lib FROM LibroEN lib INNER JOIN lib.Categoria cat WHERE cat.Id_categoria=:id_categoria";
+                //IQuery query = session.CreateQuery(sql);
+                IQuery query = (IQuery)session.GetNamedQuery ("LibroENbuscarLibroPorCategoriaHQL");
+                query.SetParameter ("id_categoria", id_categoria);
+
+                result = query.List<Entrega1GenNHibernate.EN.GrayLine.LibroEN>();
                 SessionCommit ();
         }
 

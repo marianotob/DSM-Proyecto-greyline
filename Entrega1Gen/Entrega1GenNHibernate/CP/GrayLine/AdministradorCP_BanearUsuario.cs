@@ -27,8 +27,6 @@ public void BanearUsuario (string p_Administrador_OID)
         IAdministradorCAD administradorCAD = null;
         AdministradorCEN administradorCEN = null;
 
-
-
         try
         {
                 SessionInitializeTransaction ();

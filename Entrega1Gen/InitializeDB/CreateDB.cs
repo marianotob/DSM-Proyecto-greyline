@@ -83,12 +83,12 @@ public static void InitializeData ()
                 // Insert the initilizations of entities using the CEN classes
 
                 // creamos las entidades, las Cad y los CEN para realizar operaciones
-                IUsuarioCAD _IUsuarioCAD = new UsuarioCAD ();
-                
+                // Inicializamos valores de los objetos que vamos a crear
 
 
                 #region Usuario/administrador
 
+                IUsuarioCAD _IUsuarioCAD = new UsuarioCAD ();
                 UsuarioEN usuario1EN, usuario2adminEN = new UsuarioEN ();
                 UsuarioCEN usuarioCEN = new UsuarioCEN (_IUsuarioCAD);
 
@@ -152,17 +152,17 @@ public static void InitializeData ()
                 var cat5 = categoriaCEN.New_ (categoria_5EN.Nombre_categoria);
 
                 System.Collections.Generic.List<int> listaCategorias = new List<int>();
-                // listaCategorias.Add (cat1);
-                // listaCategorias.Add (cat3);
+                listaCategorias.Add (cat1);
+                listaCategorias.Add (cat3);
 
                 #endregion
 
                 #region Libro
                 // Libros
                 /* Creamos los libros y uno de ellos de pago */
-                ILibroCAD _ILibroCAD = new LibroCAD();
-                IPagoCAD _IPagoCAD = new PagoCAD();
-                IGratuitoCAD _IGratuitoCAD = new GratuitoCAD();
+                ILibroCAD _ILibroCAD = new LibroCAD ();
+                IPagoCAD _IPagoCAD = new PagoCAD ();
+                IGratuitoCAD _IGratuitoCAD = new GratuitoCAD ();
                 GratuitoEN libro1EN = new GratuitoEN ();
                 GratuitoEN libro2EN = new GratuitoEN ();
                 PagoEN libro3EN = new PagoEN ();
@@ -246,7 +246,7 @@ public static void InitializeData ()
                 capituloEN.Editando = false;
 
                 capituloCEN.New_ (capituloEN.Nombre, capituloEN.Numero, capituloEN.Contenido, idLibro1, true);
-                
+
 
                 //capitulo 3
                 capituloEN.Id_capitulo = 3;
@@ -298,8 +298,10 @@ public static void InitializeData ()
                 var r = usuarioCEN.ReadAll (0, 10);
                 var l = gratuitoCEN.ReadAll (0, 10);
                 var mostrarLibros = libroCEN.VerLibreria (0, 10);
+                var mostrarLibro = libroCEN.VerLibro (idLibro1);
                 var c = capituloCEN.ReadAll (0, 10);
-               
+
+                /* COMPROBAR da siempre false, no inicia sesion */
                 System.Console.WriteLine (usuarioCEN.IniciarSesion (usuario2adminEN.Email, usuario2adminEN.Contrasenya));
                 var prueba_filtrolibro = libroCEN.BuscarLibro ("El Quijote");
 
@@ -335,23 +337,22 @@ public static void InitializeData ()
                         }
                 }
 
-
-
                 /* Creamos una lista de Libros paar ver su categoria pasada por parametro */
 
-                 IList<LibroEN> listLibros = libroCEN.BuscarCategoria (0,10);
+                IList<LibroEN> listLibros = libroCEN.BuscarLibroPorCategoria(cat1);
+
                 /* cuando hacemos la consulta, comparamos un entero con una lista ya que en el
-                  new libro recibe las categorias como listas 
-
-
-                // Para visualizar lis libros creados
-                 if (listLibros != null) {
-                       foreach (LibroEN libros in listLibros) {
-                              System.Console.WriteLine (libros.Titulo.ToString ());
-                        }
-                 }
-
-            */
+                 * new libro recibe las categorias como listas
+                 *
+                 *
+                 * // Para visualizar lis libros creados
+                 * if (listLibros != null) {
+                 *     foreach (LibroEN libros in listLibros) {
+                 *            System.Console.WriteLine (libros.Titulo.ToString ());
+                 *      }
+                 * }
+                 *
+                 */
                 #endregion
 
                 /*PROTECTED REGION END*/
