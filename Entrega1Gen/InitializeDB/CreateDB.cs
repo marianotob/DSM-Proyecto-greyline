@@ -81,10 +81,8 @@ public static void InitializeData ()
         try
         {
                 // Insert the initilizations of entities using the CEN classes
-
                 // creamos las entidades, las Cad y los CEN para realizar operaciones
                 // Inicializamos valores de los objetos que vamos a crear
-
 
                 #region Usuario/administrador
 
@@ -235,9 +233,7 @@ public static void InitializeData ()
                 int idLibro4 = PagoCEN.New_ (libro4EN.Titulo, libro4EN.Portada, libro4EN.Descripcion, libro4EN.Fecha, libro4EN.Publicado, listaUsuarios, listaCategorias2, libro4EN.Baneado, libro4EN.Num_denuncias, 9, false);
 
                 #endregion
-
-
-                /* Se crean 4 caputulos, los dos primeros para un libro gratuito
+                /* Se crean 4 capitulos, los dos primeros para un libro gratuito
                  * y los dos segundo para un libro de pago */
                 #region Capitulo
                 // Composicion
@@ -317,13 +313,13 @@ public static void InitializeData ()
                 // llamadas paa comprobar de lectura read all
                 var r = usuarioCEN.ReadAll (0, 10);
                 var l = gratuitoCEN.VerLibrosGratuitos (0, 10);
-                var p = PagoCEN.VerLibrosPago(0, 10);
+                var p = PagoCEN.VerLibrosPago (0, 10);
                 var mostrarLibros = libroCEN.VerLibreria (0, 10);
                 var mostrarLibro = libroCEN.VerLibro (idLibro1);
                 var c = capituloCEN.ReadAll (0, 10);
 
                 /* Iniciar sesion */
-                System.Console.WriteLine (usuarioCEN.IniciarSesion (usuario2adminEN.Email, usuario2adminEN.Contrasenya));
+                System.Console.WriteLine ("Inicia sesion?: " + usuarioCEN.IniciarSesion (usuario2adminEN.Email, usuario2adminEN.Contrasenya));
                 var prueba_filtrolibro = libroCEN.BuscarLibro ("El Quijote");
                 var librosPago = PagoCEN.VerLibrosPago (0, -1);
                 // comprobar capitulos de libro
@@ -354,7 +350,7 @@ public static void InitializeData ()
                 // Para visualizar el contenido de categorias. Se muestran todas
                 if (listCategorias != null) {
                         foreach (CategoriaEN categorias in listCategorias) {
-                               // System.Console.WriteLine (categorias.Nombre_categoria.ToString ());
+                                // System.Console.WriteLine (categorias.Nombre_categoria.ToString ());
                         }
                 }
 
@@ -364,8 +360,33 @@ public static void InitializeData ()
                 IList<LibroEN> listLibros2 = libroCEN.BuscarLibroPorCategoria (cat2);
 
                 /* Prueba para bannear usuario. Se le paa el OID del usuario1EN y lo bannea*/
-
                 usuarioCEN.BanearUsuario (usu1);
+
+                /* Prueba publicar. Un usuario publica un libro El metodo no devuelve nada,
+                 * simplemente incrementa incrementa el numero de denuncias, si supera 5 bannea el libro
+                 * y pone publicado a false. */
+                libroCEN.Denunciar (idLibro1);
+                libroCEN.Denunciar (idLibro1);
+                libroCEN.Denunciar (idLibro1);
+                libroCEN.Denunciar (idLibro1);
+                libroCEN.Denunciar (idLibro1);
+                libroCEN.Denunciar (idLibro1);
+                libroCEN.Denunciar (idLibro1);
+
+                var w = libro1EN.Num_denuncias;
+                var v = libro1EN.Baneado;
+
+                var numerodenunciados = libro1EN.Num_denuncias;
+                System.Console.WriteLine ("Este libro debe tener 6 denuncia: " + numerodenunciados);
+
+
+
+
+
+
+
+
+
 
 
                 #endregion

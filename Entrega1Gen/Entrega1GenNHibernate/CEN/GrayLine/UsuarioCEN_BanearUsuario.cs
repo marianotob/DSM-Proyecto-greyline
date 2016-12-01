@@ -41,6 +41,7 @@ public void BanearUsuario (string p_oid)
                 throw ex;
         }
 
+
         // throw new NotImplementedException ("Method BanearUsuario() not yet implemented.");
 
         /*PROTECTED REGION END*/

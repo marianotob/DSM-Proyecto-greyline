@@ -91,7 +91,9 @@
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_maSKQKQ4EeamjJeFffQGjw" name="p_oid" type="OID" typeObject="_QeKtsKQ3EeamjJeFffQGjw"/>
       </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_YKGIIKZnEeat7_WgrJhB0A" name="readAll" operationType="ReadAll" type="Object" collectionType="List" typeObject="_QeKtsKQ3EeamjJeFffQGjw"/>
-      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_kqJLoKdUEea59p9nOIUK-A" name="denunciar" operationType="Modifier" type="Void" automaticSynchronize="false" customized="true"/>
+      <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_kqJLoKdUEea59p9nOIUK-A" name="denunciar" type="Void" customized="true">
+        <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="__MJsVrgLEeabPpFp96mnkA" name="idlibro" type="OID" typeObject="_QeKtsKQ3EeamjJeFffQGjw"/>
+      </operations>
       <operations xmi:type="es.ua.dlsi.ooh:Operation" xmi:id="_9EassKdVEea59p9nOIUK-A" name="valorar" operationType="Relationer" type="Void" relatedRol="_y-ZmUqdSEea59p9nOIUK-A">
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_qZZbN6dZEea59p9nOIUK-A" name="p_Libro_OID" type="OID" typeObject="_QeKtsKQ3EeamjJeFffQGjw"/>
         <arguments xmi:type="es.ua.dlsi.ooh:Argument" xmi:id="_qZZbOKdZEea59p9nOIUK-A" name="p_valoracion_OIDs" type="OID" collectionType="List" typeObject="_GzW0AKdSEea59p9nOIUK-A"/>

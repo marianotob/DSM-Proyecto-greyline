@@ -42,8 +42,6 @@ void Publicar (LibroEN libro);
 System.Collections.Generic.IList<LibroEN> ReadAll (int first, int size);
 
 
-void Denunciar (LibroEN libro);
-
 
 void Valorar (int p_Libro_OID, System.Collections.Generic.IList<int> p_valoracion_OIDs);
 

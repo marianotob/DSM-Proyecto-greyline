@@ -23,8 +23,6 @@ public bool IniciarSesion (string p_oid, string pass)
 {
         /*PROTECTED REGION ID(Entrega1GenNHibernate.CEN.GrayLine_Usuario_iniciarSesion) ENABLED START*/
 
-        // Write here your custom code...
-
         // ciframos la cadena que nos pasan como password y comprobamos que es la misma que la del usuario
         var passCifrado = Utils.Util.GetEncondeMD5 (pass);
 
