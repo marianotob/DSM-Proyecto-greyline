@@ -35,7 +35,7 @@ public void Denunciar (int idlibro)
                                 libroEN.Baneado = true;
                                 libroEN.Publicado = false;
                                 
-
+                            /* Como se deben guardar los daots?*/
                         }
                 }
         }
