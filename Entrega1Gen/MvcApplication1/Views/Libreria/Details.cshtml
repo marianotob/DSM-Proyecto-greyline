@@ -48,11 +48,18 @@
         <div class="display-field">
             @Html.DisplayFor(model => model.Fecha)
         </div>
-        @Html.ActionLink("Ver capitulos", "listadoCapitulo", "Capitulos", new { idLibro = Model.Id_libro })
+      
+        @Html.ActionLink("Ver Capirulos", "../Capitulos/listadoCapitulo", new { idLibro = Model.Id_libro })
+    
 
+        
+        
 
     </fieldset>
     <p>
+
+      
+        @Html.ActionLink("Details", "Details", new {/* id=item.PrimaryKey */ }) |
         @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
         @Html.ActionLink("Back to List", "Index")
   
