@@ -210,6 +210,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BasicController.cs" />
+    <Compile Include="Controllers\CapitulosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibreriaController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -332,6 +333,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Libreria\Index.cshtml" />
     <Content Include="Views\Libreria\Details.cshtml" />
+    <Content Include="Views\Capitulos\listadoCapitulo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
